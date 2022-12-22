@@ -1,0 +1,96 @@
+.search {
+    position: relative;
+    height: 35px;
+    width: 600px;
+    padding-left: 16px;
+    display: flex;
+    background-color: white;
+    border-radius: 4px;
+    border: 1.5px solid transparent;
+
+    input {
+        flex: 1;
+        height: 100%;
+        padding-right: 40px;
+        color: var(--black);
+        font-size: 1.6rem;
+        caret-color: var(--primary);
+        background-color: transparent;
+    }
+
+    input:not(:placeholder-shown) ~ .search-btn {
+        color: rgba(22, 24, 35, 0.75);
+    }
+
+    &:focus-within {
+        border-color: rgba(22, 24, 35, 0.2);
+    }
+}
+.search-result {
+    width: 100%;
+}
+.search-title {
+    padding: 5px 12px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: rgba(22, 24, 35, 0.5);
+}
+.clear,
+.loading {
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(22, 24, 35, 0.34);
+}
+
+.loading {
+    animation: spinner 0.8s linear infinite;
+}
+
+@keyframes spinner {
+    from {
+        transform: translateY(-50%) rotate(0);
+    }
+    to {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
+
+.search-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 100%;
+    border-radius: 2px;
+    background-color: var(--primary);
+    color: white;
+
+    &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+    }
+
+}
+.search-item {
+    display: flex;
+    padding: 8px 0px;
+    border-bottom: 1px solid #cecccc;
+    width: 600px;
+    background-color: #fff;
+
+    &:hover{
+        background-color: #bebcbc;
+    }
+    img {
+        width: 80px;
+    }
+}
+.search-product-info {
+    padding: 4px;
+    span {
+        display: block;
+        height: 33.3%;
+    }
+}
