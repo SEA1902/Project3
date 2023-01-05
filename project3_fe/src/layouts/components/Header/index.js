@@ -7,8 +7,8 @@ import 'tippy.js/themes/light.css';
 import styles from './Header.module.scss';
 import config from '~/config';
 import images from '~/assets/images';
-// import Search from '../Search/Search';
-// import { CartIcon } from '~/components/Icons';
+import Search from '../Search';
+import { CartIcon } from '~/components/Icons';
 
 const cx = classNames.bind(styles);
 
@@ -57,11 +57,11 @@ function Header() {
                     <i>Project3</i>
                 </Link>
 
-                {/* <Search />
+                <Search />
 
                 <Link to={config.routes.cart} className={cx('cart-btn')}>
                     <CartIcon />
-                </Link> */}
+                </Link>
             </div>
         </header>
     );

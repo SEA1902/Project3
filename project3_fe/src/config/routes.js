@@ -3,7 +3,7 @@ const routes = {
     login: '/login',
     register: '/register',
     // cart: '/cart',
-    // productpage: '/productpage',
+    productpage: '/productpage',
     // checkout: '/checkout',
 };
 
