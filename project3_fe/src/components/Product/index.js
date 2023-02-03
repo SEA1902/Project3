@@ -2,23 +2,36 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './Product.module.scss';
 import Button from '../Button';
-// import * as cartService from '~/services/cartService';
+import * as cartService from '~/services/cartService';
 import config from '~/config';
+
 
 const cx = classNames.bind(styles);
 
 function Product({ product }) {
-    // const user = JSON.parse(localStorage.getItem('user'));
+    // const [product, setProduct] = useState([])
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    // useEffect(() => {
+    //     const fetchApi = async () => {
+    //         const result = await productsService.getById(productId);
+
+    //         setProduct(result);
+    //     };
+
+    //     fetchApi();
+    // }, [productId]);
 
     const handleAddToCart = (product) => {
         const item = {
             product: product,
             quantity: 1
         }
-        // const fetchApi = async () => {
-        //     await cartService.post(user._id, item);
-        // };
-        // fetchApi();        
+        console.log(item);
+        const fetchApi = async () => {
+            await cartService.post(user._id, item);
+        };
+        fetchApi();        
     };
     return (
         <div className={cx('wrapper')}>

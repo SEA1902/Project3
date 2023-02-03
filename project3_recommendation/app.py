@@ -3,12 +3,13 @@ from flask_cors import CORS
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 from pandas import DataFrame
 import pymongo
-import cv2
+# import cv2
 import numpy as np
 from sklearn.metrics.pairwise import pairwise_distances
 from bson.objectid import ObjectId
-import jsonpickle
+# import jsonpickle
 import json
+import urllib
 
 app = Flask(__name__)
 CORS(app)
@@ -27,10 +28,8 @@ df = DataFrame(list_cur)
 
 # download image by url
 # for i in df.index:
-#     urllib.request.urlretrieve(df.iloc[i]['image'], "./images/"+ str(i) + ".jpg")
+    # urllib.request.urlretrieve(df.iloc[i]['image'], "./images/"+ str(i) + ".jpg")
 
-def img_path(idx):
-    return "./images/"+ str(idx) + ".jpg"
 
 # Calcule DIstance Matriz
 df_embs = pd.read_csv('./embeddings.csv')
@@ -43,7 +42,7 @@ indices = pd.Series(range(len(df)), index=df.index)
 
 def get_recommender(top_n = 4):
     id = request.get_json()
-    idx = df[df['_id'] == ObjectId(id)].index.values
+    idx = df[df['_id'] == ObjectId(id['id'])].index.values
     sim_idx    = indices[idx]
     sim_scores = list(enumerate(cosine_sim[sim_idx][0]))
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)

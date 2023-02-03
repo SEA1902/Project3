@@ -7,16 +7,16 @@ import Product from '~/components/Product';
 
 const cx = classNames.bind(styles);
 
-function ProductList({ articleType }) {
+function ProductList({ subCategory, articleType }) {
     const [products, setProducts] = useState([]);
     const [pages, setPages] = useState([]);
     const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(8);
+    const [limit, setLimit] = useState(10);
 
     useEffect(() => {
         const fetchApi = async () => {
-            const result = await productsService.getProductList(page, limit, articleType);
-            
+            const result = await productsService.getProductList(page, limit, subCategory, articleType);
+
             setProducts(result.products);
 
             var arr = [];
@@ -39,7 +39,6 @@ function ProductList({ articleType }) {
         setPage(1);
     }, [articleType]);
 
-
     const handleLimit = (limit) => {
         setLimit(limit);
     };
@@ -60,9 +59,9 @@ function ProductList({ articleType }) {
             <div className={cx('limit')}>
                 Show
                 <select className={cx('select-limit')} onChange={(e) => handleLimit(e.target.value)} value={limit}>
-                    <option>8</option>
-                    <option>16</option>
-                    <option>32</option>
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
                 </select>
                 per page
             </div>

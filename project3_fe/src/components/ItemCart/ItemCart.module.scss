@@ -1,0 +1,37 @@
+.wrapper {
+    display: flex;
+    // width: 80%;
+    padding: 8px;
+    justify-content: space-between;
+    align-items: center;
+}
+.product-media {
+    display: flex;
+    align-items: center;
+}
+.product-image {
+    width: 100px;
+}
+.product-name {
+    padding: 8px 4px;
+}
+.product-price {
+}
+.product-quantity input {
+    padding: 8px;
+    width: 50px;
+    border: 1px solid #aaa8a8;
+    border-radius: 2px;
+}
+.product-total {
+    color: var(--primary);
+}
+.delete-btn {
+    cursor: pointer;
+    color: red;
+}
+.delete-btn span {
+    &:hover {
+        text-decoration: underline;
+    }
+}

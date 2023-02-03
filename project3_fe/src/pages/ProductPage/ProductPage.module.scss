@@ -45,3 +45,16 @@
     border: 1px solid #aaa8a8;
     border-radius: 2px;
 }
+
+.product-relate{
+    margin-top: 40px;
+}
+.product-relate-label{
+    font-size: 25px;
+    font-weight: 600;
+    border-bottom: 1px solid #aaa8a8;
+}
+.product-relate-list{
+    display: flex;
+    justify-content: space-between;
+}

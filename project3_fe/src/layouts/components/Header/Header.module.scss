@@ -58,6 +58,10 @@
     align-items: center;
     cursor: pointer;
     color: white;
+
+    &:hover {
+        color: #fff;
+    }
 }
 
 .cart-btn {

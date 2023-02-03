@@ -2,14 +2,15 @@ import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './ProductPage.module.scss';
 import Button from '~/components/Button';
-// import * as cartService from '~/services/cartService';
+import * as cartService from '~/services/cartService';
 import * as productsService from '~/services/productsService';
 import { useLocation } from 'react-router-dom';
+import Product from '~/components/Product';
 
 const cx = classNames.bind(styles);
 
 function ProductPage() {
-    // const user = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem('user'));
     const [product, setProduct] = useState([]);
     const [productRelate, setProductRelate] = useState([])
     const [quantity, setQuantity] = useState(1);
@@ -20,40 +21,10 @@ function ProductPage() {
     useEffect(() => {
         const fetchApi = async () => {
             const result = await productsService.getById(productId);
-            // const productRelateId = await productsService.getProductRecommendation(productId);
-            // productRelateId.forEach( async (id) => {
-            //     await productsService.getById(id)
-            //         .then((data) => {
-            //             productRelate.push(data)
-            //         })
-            //     // productRelate.push(productsService.getById(id))
-            // });
-
-            // console.log(productRelate);
+            const productRelate = await productsService.getProductRecommendation(productId)
+            console.log(productRelate);
             setProduct(result);
 
-            
-            // setProductRelate(productRelate);
-        };
-
-        fetchApi();
-    }, [productId]);
-    useEffect(() => {
-        const fetchApi = async () => {
-            // const result = await productsService.getById(productId);
-            const productRelateId = await productsService.getProductRecommendation(productId);
-            productRelateId.forEach(async (id, index) => {
-                await productsService.getById(id)
-                    .then(async (data) => {
-                        await productRelate.push(data)
-                    })
-                // productRelate.push(productsService.getById(id))
-            });
-
-            console.log(productRelate);
-            // setProduct(result);
-
-            
             setProductRelate(productRelate);
         };
 
@@ -61,14 +32,14 @@ function ProductPage() {
     }, [productId]);
 
     const handleAddToCart = () => {
-        // const item = {
-        //     product: product,
-        //     quantity: Number(quantity),
-        // };
-        // const fetchApi = async () => {
-        //     await cartService.post(user._id, item);
-        // };
-        // fetchApi();
+        const item = {
+            product: product,
+            quantity: Number(quantity),
+        };
+        const fetchApi = async () => {
+            await cartService.post(user._id, item);
+        };
+        fetchApi();
     };
 
     const handleQuantity = (quantity) => {
@@ -101,7 +72,14 @@ function ProductPage() {
                 </div>
             </div>
 
-            <div className={cx('product-info-detail')}></div>
+            <div className={cx('product-relate')}>
+                <div className={cx('product-relate-label')}>Product Relate</div>
+                <div className={cx('product-relate-list')}>
+                    {productRelate.map((product, index) => (
+                        <Product product={product} key={index} />
+                    ))}
+                </div>
+            </div>
         </div>
     );
 }

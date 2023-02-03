@@ -19,24 +19,20 @@ function Header() {
     const handleLogout = () => {
         localStorage.removeItem('user');
         navigate(config.routes.login);
-    }
+    };
     const MenuInfo = () => {
-        return(
+        return (
             <div className={cx('user-dropdown')}>
                 <div>My Account</div>
                 <div onClick={handleLogout}>Log out</div>
             </div>
-        )
-    }
+        );
+    };
     return (
         <header className={cx('wrapper')}>
             <div className={cx('navbar')}>
                 {user ? (
-                    <Tippy 
-                        content={<MenuInfo />}
-                        interactive={true}
-                        theme='light'
-                    >
+                    <Tippy content={<MenuInfo />} interactive={true} theme="light">
                         <button className={cx('user-name')}>{user.username}</button>
                     </Tippy>
                 ) : (

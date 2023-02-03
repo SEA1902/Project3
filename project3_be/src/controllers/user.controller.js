@@ -1,5 +1,5 @@
 const User = require("../models/user.model");
-// const Cart = require("../models/cart.model");
+const Cart = require("../models/cart.model");
 
 exports.create = (req, res) => {
     const user = new User({
@@ -12,13 +12,13 @@ exports.create = (req, res) => {
         if(err) return handleError(err)
         else res.send(result);
 
-        // const cart = new Cart({
-        //     user: user.id,
-        //     items: [],
-        // });
-        // cart.save(function (err) {
-        //     if (err) return handleError(err);
-        //   });
+        const cart = new Cart({
+            user: user.id,
+            items: [],
+        });
+        cart.save(function (err) {
+            if (err) return handleError(err);
+          });
     })
 }
 
