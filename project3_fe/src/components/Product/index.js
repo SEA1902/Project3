@@ -5,7 +5,6 @@ import Button from '../Button';
 import * as cartService from '~/services/cartService';
 import config from '~/config';
 
-
 const cx = classNames.bind(styles);
 
 function Product({ product }) {
@@ -25,13 +24,12 @@ function Product({ product }) {
     const handleAddToCart = (product) => {
         const item = {
             product: product,
-            quantity: 1
-        }
-        console.log(item);
+            quantity: 1,
+        };
         const fetchApi = async () => {
             await cartService.post(user._id, item);
         };
-        fetchApi();        
+        fetchApi();
     };
     return (
         <div className={cx('wrapper')}>
@@ -41,11 +39,7 @@ function Product({ product }) {
                     search: `${product._id}`,
                 }}
             >
-                <img
-                    className={cx('product-image')}
-                    src={product.image}
-                    alt="products"
-                ></img>
+                <img className={cx('product-image')} src={product.image} alt="products"></img>
                 <div className={cx('product-name')}>{product.productDisplayName}</div>
             </Link>
 

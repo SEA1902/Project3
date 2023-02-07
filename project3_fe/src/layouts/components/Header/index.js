@@ -23,7 +23,9 @@ function Header() {
     const MenuInfo = () => {
         return (
             <div className={cx('user-dropdown')}>
-                <div>My Account</div>
+                <Link to={config.routes.myAccount}>
+                    <div>My Account</div>
+                </Link>
                 <div onClick={handleLogout}>Log out</div>
             </div>
         );

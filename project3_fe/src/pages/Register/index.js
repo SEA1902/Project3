@@ -10,11 +10,14 @@ const cx = classNames.bind(styles);
 function Register() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [phone, setPhone] = useState('');
+    const [address, setAddress] = useState('');
+
     const navigate = useNavigate();
 
     const handleRegister = () => {
         const fetchApi = async () => {
-            await userService.register(username, password);
+            await userService.register(username, password, phone, address);
         };
 
         fetchApi();
@@ -31,6 +34,26 @@ function Register() {
                         value={username}
                         onChange={(e) => {
                             setUsername(e.target.value);
+                        }}
+                    />
+                </div>
+                <div className={cx('form-group')}>
+                    <label>Phone: </label>
+                    <input
+                        type="text"
+                        value={phone}
+                        onChange={(e) => {
+                            setPhone(e.target.value);
+                        }}
+                    />
+                </div>
+                <div className={cx('form-group')}>
+                    <label>Address: </label>
+                    <input
+                        type="text"
+                        value={address}
+                        onChange={(e) => {
+                            setAddress(e.target.value);
                         }}
                     />
                 </div>

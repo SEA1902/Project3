@@ -4,7 +4,8 @@ const routes = {
     register: '/register',
     cart: '/cart',
     productpage: '/productpage',
-    // checkout: '/checkout',
+    checkout: '/checkout',
+    myAccount: '/myAccount',
 };
 
 export default routes;

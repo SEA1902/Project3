@@ -8,7 +8,7 @@ import config from '~/config';
 const cx = classNames.bind(styles);
 
 function Login() {
-    const [username, setUsername] = useState('');
+    const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
@@ -16,14 +16,14 @@ function Login() {
         e.preventDefault();
 
         const fetchApi = async () => {
-            const result = await userService.login(username, password);
-            
-            if (result) {
+            const result = await userService.login(phone, password);
+
+            if (result.user) {
                 localStorage.setItem('user', JSON.stringify(result.user));
 
                 navigate(config.routes.home);
-            } else{
-                alert('Sai tên đăng nhập hoặc mật khẩu')
+            } else {
+                alert('Sai tên đăng nhập hoặc mật khẩu');
             }
         };
 
@@ -35,12 +35,12 @@ function Login() {
             <form className={cx('form-login')} onSubmit={handleLogin}>
                 <label className={cx('form-label')}>Login</label>
                 <div className={cx('form-group')}>
-                    <label>Username: </label>
+                    <label>Phone: </label>
                     <input
                         type="text"
-                        value={username}
+                        value={phone}
                         onChange={(e) => {
-                            setUsername(e.target.value);
+                            setPhone(e.target.value);
                         }}
                     />
                 </div>

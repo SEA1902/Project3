@@ -1,0 +1,118 @@
+.wrapper {
+    display: flex;
+    padding: 20px 40px;
+}
+.shipping {
+    padding: 0px 30px;
+    width: 65%;
+}
+.shipping-address {
+    padding: 20px 0px;
+}
+.group-address {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.shipping-address-label {
+    display: block;
+    font-size: 2.4rem;
+    padding: 2px 0px;
+    border-bottom: 1px solid #cecccc;
+}
+.address-item {
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    max-width: 200px;
+    min-height: 100px;
+    padding: 10px;
+    margin: 10px 0px;
+    box-shadow: 1px 1px #e6e4e4;
+
+    label {
+        font-weight: 600;
+        font-size: 18px;
+    }
+    div {
+        font-size: 15px;
+    }
+}
+.shipping-method-label {
+    display: block;
+    font-size: 2.4rem;
+    padding: 2px 0px;
+    border-bottom: 1px solid #cecccc;
+}
+.option {
+    max-width: 60%;
+    padding: 18px 0px;
+    border-bottom: 1px solid #cecccc;
+}
+.option input {
+    cursor: pointer;
+    margin-right: 8px;
+}
+.option span {
+    font-weight: 600;
+    padding-right: 30px;
+}
+.order-summary {
+    flex: 1;
+    background-color: #f5f5f5;
+    padding: 20px 30px;
+}
+.order-label {
+    display: block;
+    font-size: 2.4rem;
+    padding: 2px 0px;
+    border-bottom: 1px solid #cecccc;
+}
+.money-group {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0px;
+}
+
+.order-total {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0px;
+    font-weight: 600;
+    font-size: 2rem;
+    border-top: 1px solid #cecccc;
+}
+.item-dropdown {
+    padding: 8px 0px;
+}
+.dropdown-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 2rem;
+    padding: 8px 0px;
+    border-bottom: 1px solid #cecccc;
+    cursor: pointer;
+}
+.list-item {
+    display: none;
+}
+.item {
+    display: flex;
+    padding: 8px 0px;
+    border-bottom: 1px solid #cecccc;
+}
+.item img {
+    width: 80px;
+}
+.product-info {
+    padding: 4px;
+}
+.product-info span {
+    display: block;
+    height: 33.3%;
+}
+
+.btn-submit {
+    padding: 20px 0px;
+    display: flex;
+    justify-content: center;
+}

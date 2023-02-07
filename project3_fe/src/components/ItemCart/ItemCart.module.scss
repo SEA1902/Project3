@@ -8,6 +8,7 @@
 .product-media {
     display: flex;
     align-items: center;
+    width: 50%;
 }
 .product-image {
     width: 100px;
@@ -15,8 +16,8 @@
 .product-name {
     padding: 8px 4px;
 }
-.product-price {
-}
+// .product-price {
+// }
 .product-quantity input {
     padding: 8px;
     width: 50px;

@@ -147,6 +147,7 @@ exports.search = (req, res) => {
           message: "Product not found",
         });
       }
+      data = data.slice(0, 10);
       res.send(data);
     })
     .catch((err) => {
