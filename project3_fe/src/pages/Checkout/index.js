@@ -38,8 +38,8 @@ function Checkout() {
             });
 
             setSubtotal(subtotal);
+            setOrderTotal(subtotal + shipping);
         };
-        setOrderTotal(subtotal + shipping);
         fetchApi();
     }, []);
 

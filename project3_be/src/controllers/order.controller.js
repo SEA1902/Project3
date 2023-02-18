@@ -33,6 +33,46 @@ exports.getRecentOrder = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
+        message: err.message || "Some error occurred while get the order",
+      });
+    });
+};
+
+exports.getAllOrders = (req, res) => {
+  Order.find()
+    .populate({ path: "user", id: req.params.userId })
+    .populate({ path: "items", populate: { path: "product" } })
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Some error occurred while get the order",
+      });
+    });
+};
+
+exports.getOrder = (req, res) => {
+  const orderId = req.body.orderId;
+  Order.findById(orderId)
+    .populate({ path: "user", id: req.params.userId })
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Some error occurred while creating the order",
+      });
+    });
+};
+exports.deleteOrder = (req, res) => {
+  const orderId = req.body.orderId;
+  Order.deleteOne({ _id: orderId })
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
         message: err.message || "Some error occurred while creating the order",
       });
     });

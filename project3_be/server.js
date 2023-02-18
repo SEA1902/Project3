@@ -1,16 +1,16 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const cors = require('cors')
+const cors = require("cors");
 const mongoose = require("mongoose");
 
-const route = require('./src/routes')
+const route = require("./src/routes");
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/project3', 
-    {
-      useNewUrlParser: true,
-    }
-  )
+mongoose.set("strictQuery", false);
+mongoose
+  .connect("mongodb://localhost:27017/project3", {
+    useNewUrlParser: true,
+  })
   .then(() => {
     console.log("Successfully connected to the database");
   })
@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
 
-app.use(cors())
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.json({ message: "Server is running :D" });

@@ -24,22 +24,34 @@ export const register = async (username, password, phone, address) => {
     }
 };
 
-export const updateInformation = async (username, phone) => {
+export const updateInformation = async (userId, username, phone) => {
     try {
-        await httpRequest.post('user/update-information', {
+        const result = await httpRequest.post('user/update-information/' + userId, {
             phone: phone,
             username: username,
         });
+        return result.data;
     } catch (error) {
         console.log(error);
     }
 };
 
-export const updateChangePassword = async (newPassword) => {
+export const updatePassword = async (userId, password) => {
     try {
-        await httpRequest.post('user/update-password', {
-            newPassword: newPassword,
+        const result = await httpRequest.post('user/update-information/' + userId, {
+            password: password,
         });
+        return result.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const updateAddress = async (userId, address) => {
+    try {
+        const result = await httpRequest.post('user/update-information/' + userId, {
+            address: address,
+        });
+        return result.data;
     } catch (error) {
         console.log(error);
     }

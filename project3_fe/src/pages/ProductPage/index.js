@@ -12,7 +12,7 @@ const cx = classNames.bind(styles);
 function ProductPage() {
     const user = JSON.parse(localStorage.getItem('user'));
     const [product, setProduct] = useState([]);
-    const [productRelate, setProductRelate] = useState([])
+    const [productRelate, setProductRelate] = useState([]);
     const [quantity, setQuantity] = useState(1);
 
     let location = useLocation();
@@ -21,8 +21,7 @@ function ProductPage() {
     useEffect(() => {
         const fetchApi = async () => {
             const result = await productsService.getById(productId);
-            const productRelate = await productsService.getProductRecommendation(productId)
-            console.log(productRelate);
+            const productRelate = await productsService.getProductRecommendation(productId);
             setProduct(result);
 
             setProductRelate(productRelate);
@@ -61,7 +60,12 @@ function ProductPage() {
 
                     <div className={cx('product-quantity')}>
                         <label>Số lượng:</label>
-                        <input type="number" onChange={(e) => handleQuantity(e.target.value)} value={quantity} min="1"/>
+                        <input
+                            type="number"
+                            onChange={(e) => handleQuantity(e.target.value)}
+                            value={quantity}
+                            min="1"
+                        />
                     </div>
 
                     <div className={cx('product-btn')}>
