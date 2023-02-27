@@ -66,4 +66,19 @@
 .cart-btn {
     background-color: var(--primary);
     margin-right: 100px;
+    display: flex;
+    position: relative;
+    padding: 4px;
+}
+
+.cart-quantity {
+    background-color: red;
+    color: #fff;
+    border-radius: 50%;
+    padding: 2px 4px;
+    font-size: 12px;
+    font-weight: 500;
+    position: absolute;
+    top: 0;
+    right: 0;
 }

@@ -9,12 +9,24 @@ import config from '~/config';
 import images from '~/assets/images';
 import Search from '../Search';
 import { CartIcon } from '~/components/Icons';
+import { useContext, useEffect } from 'react';
+import { QuantityCart } from '~/App';
+import * as cartService from '~/services/cartService';
 
 const cx = classNames.bind(styles);
 
 function Header() {
+    const { quantityCart, setQuantityCart } = useContext(QuantityCart);
     const user = JSON.parse(localStorage.getItem('user'));
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchApi = async () => {
+            const result = await cartService.get(user._id);
+            setQuantityCart(result.items.length);
+        };
+        fetchApi();
+    }, []);
 
     const handleLogout = () => {
         localStorage.removeItem('user');
@@ -59,6 +71,7 @@ function Header() {
 
                 <Link to={config.routes.cart} className={cx('cart-btn')}>
                     <CartIcon />
+                    {quantityCart !== 0 && <div className={cx('cart-quantity')}>{quantityCart}</div>}
                 </Link>
             </div>
         </header>

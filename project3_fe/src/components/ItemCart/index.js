@@ -11,8 +11,8 @@ const cx = classNames.bind(styles);
 function ItemCart({ item, subtotal, setSubtotal, deleteItem }) {
     const user = JSON.parse(localStorage.getItem('user'));
     const [quantity, setQuantity] = useState(item.quantity);
-    
-    const handleQuantity = (quantity) => {
+
+    const handleQuantity = async (quantity) => {
         subtotal = subtotal + item.product.price * quantity - item.product.price * item.quantity;
         item.quantity = quantity;
         setQuantity(quantity);

@@ -164,23 +164,21 @@ exports.search = (req, res) => {
 
 exports.getRecommendation = async (req, res) => {
   try {
-    id = req.body.id;
+    const id = req.body.id;
+    const product = await Product.findOne({ _id: id });
+    const idImage = product._doc["idImage"];
+
     var options = {
       method: "POST",
 
       // http:flaskserverurl:port/route
       uri: "http://127.0.0.1:5000/product/get_recommender",
-      body: { id },
-
-      // Automatically stringifies
-      // the body to JSON
+      body: { idImage },
       json: true,
     };
 
     var data = await request(options);
-    for (index in data) {
-      data[index] = await Product.findById(data[index]);
-    }
+    // console.log(data);
     res.send(data);
   } catch (err) {
     res.status(500).send({

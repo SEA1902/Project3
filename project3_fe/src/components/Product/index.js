@@ -4,30 +4,25 @@ import styles from './Product.module.scss';
 import Button from '../Button';
 import * as cartService from '~/services/cartService';
 import config from '~/config';
+import { useContext } from 'react';
+import { QuantityCart } from '~/App';
+import { message } from 'antd';
 
 const cx = classNames.bind(styles);
 
 function Product({ product }) {
-    // const [product, setProduct] = useState([])
+    const { setQuantityCart } = useContext(QuantityCart);
     const user = JSON.parse(localStorage.getItem('user'));
 
-    // useEffect(() => {
-    //     const fetchApi = async () => {
-    //         const result = await productsService.getById(productId);
-
-    //         setProduct(result);
-    //     };
-
-    //     fetchApi();
-    // }, [productId]);
-
     const handleAddToCart = (product) => {
+        message.success(`Thêm ${product.productDisplayName} vào giỏ hàng thành công!`);
         const item = {
             product: product,
             quantity: 1,
         };
         const fetchApi = async () => {
-            await cartService.post(user._id, item);
+            const result = await cartService.post(user._id, item);
+            setQuantityCart(result.items.length);
         };
         fetchApi();
     };

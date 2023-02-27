@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import styles from './Checkout.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
@@ -7,11 +7,13 @@ import config from '~/config';
 import * as cartService from '~/services/cartService';
 import * as orderService from '~/services/orderService';
 import { useNavigate } from 'react-router-dom';
-import { Button, Form, Modal, Input } from 'antd';
+import { Button, Form, Modal, Input, message } from 'antd';
+import { QuantityCart } from '~/App';
 
 const cx = classNames.bind(styles);
 
 function Checkout() {
+    const { setQuantityCart } = useContext(QuantityCart);
     const user = JSON.parse(localStorage.getItem('user'));
     const navigate = useNavigate();
     if (!user) navigate(config.routes.login);
@@ -75,6 +77,8 @@ function Checkout() {
             await orderService.post(order);
         };
         addOrder();
+        setQuantityCart(0);
+        message.success('Đặt hàng thành công!');
         navigate(config.routes.home);
     };
     const handleAddAddress = async () => {
@@ -88,7 +92,7 @@ function Checkout() {
             <div className={cx('shipping')}>
                 <div className={cx('shipping-address')}>
                     <label className={cx('shipping-address-label')}>Shipping Address</label>
-                    <di className={cx('group-address')}>
+                    <div className={cx('group-address')}>
                         <div>
                             <div className={cx('address-item')}>
                                 <label>Address Shipping:</label>
@@ -100,7 +104,7 @@ function Checkout() {
                         <Button className={cx('btn-add-address')} onClick={() => setIsModalAddress(true)}>
                             Đổi địa chỉ Shipping
                         </Button>
-                    </di>
+                    </div>
                     <Modal
                         title="Address Shipping"
                         open={isModalAddress}

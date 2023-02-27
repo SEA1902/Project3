@@ -7,7 +7,7 @@ function route(app) {
   app.use("/user", userRouter);
   app.use("/product", productRouter);
   app.use("/order", orderRouter);
-  app.use("/cart/:userId", cartRouter);
+  app.use("/cart", cartRouter);
 }
 
 module.exports = route;

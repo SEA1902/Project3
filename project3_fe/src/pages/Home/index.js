@@ -47,41 +47,6 @@ function Home() {
     return (
         <div className={cx('wrapper')}>
             <nav className={cx('navbar')}>
-                {/* {listSubCategory.map((subCategory, index) => {
-                    const items = listCategory
-                        .filter((category) => category._id.subCategory == subCategory)
-                        .map((category, idx) => {
-                            return {
-                                label: (
-                                    <span
-                                        onClick={() => {
-                                            setArticleType(category._id.articleType);
-                                            setSubCategory(subCategory);
-                                        }}
-                                    >
-                                        {category._id.articleType}
-                                    </span>
-                                ),
-                                key: idx,
-                            };
-                        });
-
-                    return (
-                        <Dropdown
-                            menu={{
-                                items,
-                            }}
-                            key={index}
-                            trigger={['click']}
-                        >
-                            <div onClick={(e) => {}} className={isActive ? cx('itemNav') : cx('itemNav')}>
-                                <span>{subCategory}</span>
-                                <FontAwesomeIcon icon={faAngleDown} />
-                            </div>
-                        </Dropdown>
-                    );
-                })} */}
-
                 <Menu className={cx('menu')} mode="horizontal" items={items} />
             </nav>
             <ProductList subCategory={subCategory} articleType={articleType} />

@@ -3,7 +3,7 @@
 # dependencies
 /data
 /images
-/data.csv
+/data_train.csv
 # testing
 /coverage
 

@@ -5,7 +5,7 @@ import Button from '~/components/Button';
 import * as cartService from '~/services/cartService';
 import * as productsService from '~/services/productsService';
 import { useLocation } from 'react-router-dom';
-import Product from '~/components/Product';
+import ProductRelate from '~/components/ProductRelate';
 
 const cx = classNames.bind(styles);
 
@@ -22,6 +22,7 @@ function ProductPage() {
         const fetchApi = async () => {
             const result = await productsService.getById(productId);
             const productRelate = await productsService.getProductRecommendation(productId);
+            // console.log(productRelate);
             setProduct(result);
 
             setProductRelate(productRelate);
@@ -80,7 +81,7 @@ function ProductPage() {
                 <div className={cx('product-relate-label')}>Product Relate</div>
                 <div className={cx('product-relate-list')}>
                     {productRelate.map((product, index) => (
-                        <Product product={product} key={index} />
+                        <ProductRelate product={product} key={index} />
                     ))}
                 </div>
             </div>
