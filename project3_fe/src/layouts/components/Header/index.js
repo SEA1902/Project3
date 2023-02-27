@@ -22,14 +22,17 @@ function Header() {
 
     useEffect(() => {
         const fetchApi = async () => {
-            const result = await cartService.get(user._id);
-            setQuantityCart(result.items.length);
+            if (user) {
+                const result = await cartService.get(user._id);
+                setQuantityCart(result.items.length);
+            }
         };
         fetchApi();
     }, []);
 
     const handleLogout = () => {
         localStorage.removeItem('user');
+        setQuantityCart(0);
         navigate(config.routes.login);
     };
     const MenuInfo = () => {

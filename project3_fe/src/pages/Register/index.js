@@ -1,5 +1,7 @@
 import classNames from 'classnames/bind';
 import { useState } from 'react';
+import { message } from 'antd';
+
 import styles from './Register.module.scss';
 import * as userService from '~/services/userService';
 import { Link, useNavigate } from 'react-router-dom';
@@ -21,6 +23,7 @@ function Register() {
         };
 
         fetchApi();
+        message.success('Đăng ký thành công!');
         navigate(config.routes.login);
     };
     return (

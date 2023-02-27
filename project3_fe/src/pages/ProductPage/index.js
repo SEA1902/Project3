@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
+import { message } from 'antd';
+
 import styles from './ProductPage.module.scss';
 import Button from '~/components/Button';
 import * as cartService from '~/services/cartService';
@@ -40,6 +42,7 @@ function ProductPage() {
             await cartService.post(user._id, item);
         };
         fetchApi();
+        message.success(`Thêm ${product.productDisplayName} vào giỏ hàng thành công!`);
     };
 
     const handleQuantity = (quantity) => {

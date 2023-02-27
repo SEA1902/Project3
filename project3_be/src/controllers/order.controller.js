@@ -39,7 +39,7 @@ exports.getRecentOrder = (req, res) => {
 };
 
 exports.getAllOrders = (req, res) => {
-  Order.find()
+  Order.find({ user: req.params.userId })
     .populate({ path: "user", id: req.params.userId })
     .populate({ path: "items", populate: { path: "product" } })
     .then((data) => {

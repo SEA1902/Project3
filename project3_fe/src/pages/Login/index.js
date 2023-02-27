@@ -1,15 +1,18 @@
 import classNames from 'classnames/bind';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './Login.module.scss';
 import * as userService from '~/services/userService';
+import * as cartService from '~/services/cartService';
 import config from '~/config';
+import { QuantityCart } from '~/App';
 
 const cx = classNames.bind(styles);
 
 function Login() {
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
+    const { setQuantityCart } = useContext(QuantityCart);
     const navigate = useNavigate();
 
     const handleLogin = (e) => {
@@ -25,6 +28,8 @@ function Login() {
             } else {
                 alert('Sai tên đăng nhập hoặc mật khẩu');
             }
+            const resultCart = await cartService.get(result.user._id);
+            setQuantityCart(resultCart.items.length);
         };
 
         fetchApi();

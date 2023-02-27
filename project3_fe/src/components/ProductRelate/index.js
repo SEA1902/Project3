@@ -5,7 +5,6 @@ import Button from '../Button';
 const cx = classNames.bind(styles);
 
 function ProductRelate({ product }) {
-    console.log(product);
     return (
         <div className={cx('wrapper')}>
             <div>
