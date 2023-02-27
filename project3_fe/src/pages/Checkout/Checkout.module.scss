@@ -42,6 +42,11 @@
     font-size: 2.4rem;
     padding: 2px 0px;
     border-bottom: 1px solid #cecccc;
+    span {
+        padding: 4px;
+        display: block;
+        font-size: 1.2rem;
+    }
 }
 .option {
     max-width: 60%;

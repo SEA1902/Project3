@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './Product.module.scss';
 import Button from '../Button';
@@ -13,16 +13,21 @@ const cx = classNames.bind(styles);
 function Product({ product }) {
     const { setQuantityCart } = useContext(QuantityCart);
     const user = JSON.parse(localStorage.getItem('user'));
+    const navigate = useNavigate();
 
     const handleAddToCart = (product) => {
-        message.success(`Thêm ${product.productDisplayName} vào giỏ hàng thành công!`);
         const item = {
             product: product,
             quantity: 1,
         };
         const fetchApi = async () => {
-            const result = await cartService.post(user._id, item);
-            setQuantityCart(result.items.length);
+            if (user) {
+                const result = await cartService.post(user._id, item);
+                setQuantityCart(result.items.length);
+                message.success(`Thêm ${product.productDisplayName} vào giỏ hàng thành công!`);
+            } else {
+                navigate(config.routes.login);
+            }
         };
         fetchApi();
     };

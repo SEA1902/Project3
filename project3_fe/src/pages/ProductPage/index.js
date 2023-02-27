@@ -6,8 +6,9 @@ import styles from './ProductPage.module.scss';
 import Button from '~/components/Button';
 import * as cartService from '~/services/cartService';
 import * as productsService from '~/services/productsService';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import ProductRelate from '~/components/ProductRelate';
+import config from '~/config';
 
 const cx = classNames.bind(styles);
 
@@ -16,7 +17,7 @@ function ProductPage() {
     const [product, setProduct] = useState([]);
     const [productRelate, setProductRelate] = useState([]);
     const [quantity, setQuantity] = useState(1);
-
+    const navigate = useNavigate();
     let location = useLocation();
     var productId = location.search.slice(1);
 
@@ -39,10 +40,14 @@ function ProductPage() {
             quantity: Number(quantity),
         };
         const fetchApi = async () => {
-            await cartService.post(user._id, item);
+            if (user) {
+                await cartService.post(user._id, item);
+                message.success(`Thêm ${product.productDisplayName} vào giỏ hàng thành công!`);
+            } else {
+                navigate(config.routes.login);
+            }
         };
         fetchApi();
-        message.success(`Thêm ${product.productDisplayName} vào giỏ hàng thành công!`);
     };
 
     const handleQuantity = (quantity) => {

@@ -130,7 +130,10 @@ function Checkout() {
                     </Modal>
                 </div>
                 <div className={cx('shipping-method')}>
-                    <label className={cx('shipping-method-label')}>Shipping Method</label>
+                    <label className={cx('shipping-method-label')}>
+                        Shipping Method
+                        <span>Đơn hàng trên 500$ được free ship</span>
+                    </label>
                     {subtotal >= 500 ? (
                         <div className={cx('method-options')}>
                             <div className={cx('option')}>
